@@ -3,20 +3,24 @@ using System;
 public class Solution {
     public int[] solution(int numer1, int denom1, int numer2, int denom2) {
         
-        var temp = lcm(denom1, denom2);
-        numer1 *= (temp / denom1);
-        numer2 *= (temp / denom2);
+        // 최소공배수 구하기
+        var newDenom = lcm(denom1, denom2);
+        
+        // 최소공배수로 통분하기
+        numer1 *= (newDenom / denom1);
+        numer2 *= (newDenom / denom2);
 
         int[] answer;
 
-        var temp2 = gcd(numer1 + numer2, temp);
-        if (temp2 != 1)
+        // 최대공약수 구하기 (기약분수를 만들기 위해서)
+        var temp = gcd(numer1 + numer2, newDenom);
+        if (temp != 1) // 1이 아니면 나눠준다.
         {
-            answer = new int[] { (numer1 + numer2) / temp2, temp / temp2 };
+            answer = new int[] { (numer1 + numer2) / temp, newDenom / temp };
             return answer;
         }
 
-        answer = new int[] { numer1 + numer2, temp };
+        answer = new int[] { numer1 + numer2, newDenom };
         return answer;
     }
     
