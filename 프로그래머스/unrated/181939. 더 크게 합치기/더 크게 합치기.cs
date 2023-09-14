@@ -3,18 +3,9 @@ using System;
 public class Solution {
     public int solution(int a, int b) {
         
-        Int32.TryParse(a.ToString() + b.ToString(), out var r1);
-        Int32.TryParse(b.ToString() + a.ToString(), out var r2);
-
-        if (r1 > r2)
-        {
-            return r1;
-        }
-        else
-        {
-            return r2;
-        }
+        int num1 = Int32.Parse($"{a}{b}");
+        int num2 = Int32.Parse($"{b}{a}");
         
-        return r1;
+        return Math.Max(num1, num2);
     }
 }
