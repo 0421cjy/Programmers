@@ -1,2 +1,5 @@
 # Programmers
-algorithm test
+✍️ algorithm study
+
+- Programmers
+- Baekjoon
