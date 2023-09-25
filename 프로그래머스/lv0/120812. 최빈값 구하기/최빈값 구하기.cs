@@ -4,9 +4,11 @@ using System.Linq;
 
 public class Solution {
     public int solution(int[] array) {
+        var maxNum = array.Max();
+
         List<int> list = new List<int>();
 
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i <= maxNum; i++)
         {
             int r = array.Count(x => x == i);
             list.Add(r);
