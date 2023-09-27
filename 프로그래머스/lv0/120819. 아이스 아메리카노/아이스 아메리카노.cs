@@ -7,6 +7,6 @@ public class Solution {
         int cup = money / americano;
         int r = money % americano;
 
-        return new int[] { cup, r};
+        return new int[] { cup, r };
     }
 }
