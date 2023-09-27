@@ -11,7 +11,7 @@ public class Solution {
         list.Add((300000, 10));
         list.Add((500000, 20));
 
-        var count = list.Select(x => x.Item1 <= price).Count(y => y == true);
+        var count = list.Select(x => x.Item1 <= price).Count(y => y);
         var target = list[count - 1];
 
         return (int)(price - (price * (target.Item2 / 100)));
