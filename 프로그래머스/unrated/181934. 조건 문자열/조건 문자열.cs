@@ -3,26 +3,13 @@ using System;
 public class Solution {
     public int solution(string ineq, string eq, int n, int m) {
         
-        if (ineq + eq == "<=")
-        {
-            return n <= m ? 1 : 0;
-        }
+        int answer = 0;
         
-        if (ineq + eq == ">=")
-        {
-            return n >= m ? 1 : 0;
-        }
+        if (ineq + eq == "<=") answer = n <= m ? 1 : 0;
+        if (ineq + eq == ">=") answer = n >= m ? 1 : 0;
+        if (ineq + eq == "<!") answer = n < m ? 1 : 0;
+        if (ineq + eq == ">!") answer = n > m ? 1 : 0;
         
-        if (ineq + eq == "<!")
-        {
-            return n < m ? 1 : 0;
-        }
-        
-        if (ineq + eq == ">!")
-        {
-            return n > m ? 1 : 0;
-        }
-        
-        return 0;
+        return answer;
     }
 }
