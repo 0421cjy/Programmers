@@ -5,13 +5,12 @@ public class Solution {
         int answer = 0;
         int r = 0;
         int count = 0;
-        int newN = n;
 
-        while(newN >= a)
+        while(n >= a)
         {
-            count = newN / a;
-            r = newN % a;
-            newN = (count * b) + r;
+            count = n / a;
+            r = n % a;
+            n = (count * b) + r;
             answer += count * b;
         }
         
