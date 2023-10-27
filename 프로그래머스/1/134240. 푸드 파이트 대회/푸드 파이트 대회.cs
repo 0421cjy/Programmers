@@ -8,10 +8,7 @@ public class Solution {
         for (int i = 1; i < food.Length; i++)
         {
             var q = food[i] / 2;
-            if (q == 0)
-            {
-                continue;
-            }
+            if (q == 0) continue;
 
             for (int j = 0; j < q; j++)
             {
@@ -19,9 +16,7 @@ public class Solution {
             }
         }
 
-        var reverseString = new string(answer.Reverse().ToArray());
-
-        answer += "0" + reverseString;
+        answer += "0" + string.Join("", answer.Reverse());
         
         return answer;
     }
