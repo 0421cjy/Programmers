@@ -17,8 +17,7 @@ public class Solution {
         for (int i = 0; i < ageString.Length; i++)
         {
             var t = Int32.Parse(ageString[i].ToString());
-            var temp = d[t];
-            answer += Convert.ToChar(temp);
+            answer += Convert.ToChar(d[t]);
         }
         
         return answer;
