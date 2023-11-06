@@ -5,35 +5,27 @@ public class Solution {
     public int solution(int n) {
         List<int> list = new List<int>();
 
-        int startNum = 3;
-        bool flag = true;
-
-        list.Add(2);
-
-        while (startNum <= n)
+        for (int i = 2; i <= n; i++)
         {
-            var root = Math.Sqrt(startNum);
-            flag = true;
-
-            foreach (var i in list)
+            if (IsPrime(i))
             {
-                if (root < i) break;
-
-                if (startNum % i == 0)
-                {
-                    flag = false;
-                    break;
-                }
+                list.Add(i);
             }
-
-            if (flag)
-            {
-                list.Add(startNum);
-            }
-
-            startNum += 2;
         }
         
         return list.Count;
+    }
+    
+    private static bool IsPrime(int n)
+    {
+        for (int i = 2; i * i <= n; i++)
+        {
+            if (n % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
