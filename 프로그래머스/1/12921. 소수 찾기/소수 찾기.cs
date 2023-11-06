@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 public class Solution {
     public int solution(int n) {
-        List<int> list = new List<int>();
+        int answer = 0;
 
         for (int i = 2; i <= n; i++)
         {
             if (IsPrime(i))
             {
-                list.Add(i);
+                answer++;
             }
         }
         
-        return list.Count;
+        return answer;
     }
     
     private static bool IsPrime(int n)
