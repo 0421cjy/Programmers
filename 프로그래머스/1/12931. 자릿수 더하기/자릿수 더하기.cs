@@ -4,11 +4,10 @@ using System.Linq;
 public class Solution {
     public int solution(int n) {
         int answer = 0;
-        var s = n.ToString().ToArray();
-
-        for (int i = 0; i < s.Length; i++)
+        while (n > 0)
         {
-            answer += int.Parse(s[i].ToString());
+            answer += n % 10;
+            n = n / 10;
         }
         
         return answer;
