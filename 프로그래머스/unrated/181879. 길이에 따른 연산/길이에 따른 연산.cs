@@ -6,12 +6,7 @@ public class Solution {
         int answer = 0;
         if (num_list.Length <= 10)
         {
-            answer = 1;
-
-            foreach(var i in num_list)
-            {
-                answer *= i;
-            }
+            answer = num_list.Aggregate((value1, value2) => value1 * value2);
         }
         else
         {
