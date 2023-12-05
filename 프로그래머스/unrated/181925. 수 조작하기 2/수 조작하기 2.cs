@@ -1,32 +1,33 @@
 using System;
+using System.Text;
 
 public class Solution {
     public string solution(int[] numLog) {
-        string answer = "";
-        
+        var result = new StringBuilder();
+
         for (int i = 0; i < numLog.Length - 1; i++)
         {
             if (numLog[i] + 1 == numLog[i + 1])
             {
-                answer += "w";
+                result.Append("w");
             }
 
             if (numLog[i] -1 == numLog[i + 1])
             {
-                answer += "s";
+                result.Append("s");
             }
 
             if (numLog[i] + 10 == numLog[i + 1])
             {
-                answer += "d";
+                result.Append("d");
             }
 
             if (numLog[i] - 10 == numLog[i + 1])
             {
-                answer += "a";
+                result.Append("a");
             }
         }
         
-        return answer;
+        return result.ToString();
     }
 }
