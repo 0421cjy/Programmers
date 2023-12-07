@@ -8,9 +8,9 @@ public class Solution {
 
         for (int i = 2; i <= n; i++)
         {
-            list.Add((list[i - 2] % 1234567) + (list[i - 1] % 1234567));
+            list.Add((list[i - 2] + list[i - 1]) % 1234567);
         }
         
-        return list[n] % 1234567;
+        return list[n];
     }
 }
