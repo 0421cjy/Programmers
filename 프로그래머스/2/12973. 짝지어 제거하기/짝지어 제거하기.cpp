@@ -10,15 +10,15 @@ int solution(string s)
 
     for (int i = 0; i < s.length(); i++)
     {
-        if (!stack.empty() && stack.top() == s[i])
-        {
-            stack.pop();
-        }
-        else
+        if (stack.empty() || stack.top() != s[i])
         {
             stack.push(s[i]);
         }
+        else
+        {
+            stack.pop();
+        }
     }
 
-    return (stack.empty() ? 1 : 0);
+    return stack.empty() ? 1 : 0;
 }
