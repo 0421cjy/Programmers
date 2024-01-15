@@ -42,19 +42,17 @@ public class Solution {
         }
         else
         {
-            List<char> tempString = new List<char>();
-
-            for (int i = 0; i < newstring.Length; i++)
-            {
-                tempString.Add(newstring[i]);
-            }
-
-            var tempArray = tempString.ToArray();
-            Array.Sort(tempArray, (x, y) => y.CompareTo(x));
-            
-            answer = string.Join("", tempArray);
+            answer = StringSort(newstring.ToString());
         }
 
         return answer;
+    }
+    
+    public string StringSort(string s)
+    {
+        char[] chars = s.ToCharArray();
+        Array.Sort(chars, (x, y) => y.CompareTo(x));
+
+        return new string(chars);
     }
 }
