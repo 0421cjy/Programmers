@@ -117,11 +117,13 @@ namespace backjun
     {
         static void Main(string[] args)
         {
+            string inputs = Console.ReadLine();
+
             Bowling bowling = new Bowling();
 
-            foreach (var item in Console.ReadLine())
+            for (int i = 0; i < inputs.Length; i++)
             {
-                bowling.ThrowBall(item);
+                bowling.ThrowBall(inputs[i]);
             }
 
             Console.WriteLine(bowling.TotalScore());
