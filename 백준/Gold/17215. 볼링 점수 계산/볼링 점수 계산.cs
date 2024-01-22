@@ -10,6 +10,7 @@ namespace backjun
         private List<Action<int>> m_action = new();
         private int m_frame;
         private int m_ballCount;
+        private int m_prevPin;
         private const int STRIKE = 10;
         private const int SPARE = 10;
         private const int LAST_FRAME = 9;
@@ -19,11 +20,13 @@ namespace backjun
             m_score = new (int, int, int, int)[10];
             m_frame = 0;
             m_ballCount = 0;
+            m_prevPin = 0;
         }
 
         public void ThrowBall(char pin)
         {
             var pinScore = InputScore(pin);
+            m_prevPin = pinScore;
             var frame = m_frame;
 
             if (m_ballCount == 0)
@@ -42,24 +45,22 @@ namespace backjun
             m_score[m_frame].Item4 += pinScore;
             m_ballCount++;
 
-            object number = null;
-
             foreach (var func in m_action.ToList())
             {
-                if (func.Target == number) continue;
-
                 func.Invoke(pinScore);
                 m_action.Remove(func);
-
-                number = func.Target;
             }
 
             if (m_frame < LAST_FRAME)
             {
                 if (m_score[m_frame].Item1 == STRIKE)
                 {
-                    m_action.Add(pin => m_score[frame].Item4 += pin);
-                    m_action.Add(pin => m_score[frame].Item4 += pin);
+                    m_action.Add(pin => 
+                    { 
+                        m_score[frame].Item4 += pin;
+
+                        m_action.Add(pin => m_score[frame].Item4 += pin);
+                    });
                 }
                 else if (m_score[m_frame].Item1 + m_score[m_frame].Item2 == SPARE)
                 {
@@ -70,6 +71,7 @@ namespace backjun
                 {
                     m_frame++;
                     m_ballCount = 0;
+                    m_prevPin = 0;
                 }
             }
         }
@@ -84,14 +86,7 @@ namespace backjun
             }
             else if (pin == 'P')
             {
-                if (m_ballCount < 2)
-                {
-                    add = 10 - m_score[m_frame].Item1;
-                }
-                else
-                {
-                    add = 10 - m_score[m_frame].Item2;
-                }
+                add = 10 - m_prevPin;
             }
             else if (pin == '-')
             {
@@ -122,11 +117,9 @@ namespace backjun
     {
         static void Main(string[] args)
         {
-            var list = Console.ReadLine().ToList();
-
             Bowling bowling = new Bowling();
 
-            foreach (var item in list)
+            foreach (var item in Console.ReadLine())
             {
                 bowling.ThrowBall(item);
             }
