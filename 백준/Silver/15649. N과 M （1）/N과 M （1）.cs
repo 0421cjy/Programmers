@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 
 class Program
 {
@@ -8,39 +9,39 @@ class Program
         StreamWriter writer = new StreamWriter(Console.OpenStandardOutput());
         StreamReader reader = new StreamReader(Console.OpenStandardInput());
 
-        string[] input = reader.ReadLine().Split();
-        int N = int.Parse(input[0]);
-        int M = int.Parse(input[1]);
+        var input = reader.ReadLine().Split();
+        var value1 = Int32.Parse(input[0]);
+        var value2 = Int32.Parse(input[1]);
 
-        int[] result = new int[9];
-        bool[] visited = new bool[9];
+        var ints = Enumerable.Range(0, value1).ToArray();
+        var bools = Enumerable.Repeat(false, value1).ToArray();
 
-        DFS(0);
+        NewPermutation(writer, ints, bools, 0, value1, value2);
 
         writer.Close();
         reader.Close();
+    }
 
-        void DFS(int count)
+    static void NewPermutation(StreamWriter writer, int[] array, bool[] visit, int depth, int n, int r)
+    {
+        if (depth == r)
         {
-            if (count == M)
+            for (int i = 0; i < r; i++)
             {
-                for (int i = 0; i < M; i++)
-                    writer.Write($"{result[i]} ");
-                writer.WriteLine();
+                writer.Write($"{array[i]} ");
             }
-            else
-            {
-                for (int i = 1; i <= N; i++)
-                {
-                    if (!visited[i])
-                    {
-                        visited[i] = true;
-                        result[count] = i;
-                        DFS(count + 1);
-                        visited[i] = false;
-                    }
-                }
-            }
+
+            writer.WriteLine();
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            if (visit[i]) continue;
+
+            visit[i] = true;
+            array[depth] = i + 1;
+            NewPermutation(writer, array, visit, depth + 1, n, r);
+            visit[i] = false;
         }
     }
 }
