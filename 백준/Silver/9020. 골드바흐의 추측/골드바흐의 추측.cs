@@ -16,12 +16,12 @@ class Program
 
             var list = GetPrimeNumber(num);
 
-            var temp = GetGoldBagh(list, num);
-            Console.WriteLine(temp.Item1 < temp.Item2 ? $"{temp.Item1} {temp.Item2}" : $"{temp.Item2} {temp.Item1}");
+            var result = GetGoldBachPartition(list, num);
+            Console.WriteLine($"{result.Item1} {result.Item2}");
         }
     }
 
-    static (int, int) GetGoldBagh(List<int> list, int num)
+    static (int, int) GetGoldBachPartition(List<int> list, int num)
     {
         for (int j = list.Count() - 1; 0 <= j; j--)
         {
