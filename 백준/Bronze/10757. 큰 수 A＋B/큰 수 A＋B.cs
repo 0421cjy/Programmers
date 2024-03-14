@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,60 +7,56 @@ class Program
     static void Main(string[] args)
     {
         var input = Console.ReadLine().Split();
-
-        BigNumerAdd(input[0], input[1]);
+        Console.WriteLine(stringAdd(input[0], input[1]));
     }
 
-    static void BigNumerAdd(string num1, string num2)
+    static string stringAdd(string n, string m)
     {
-        Queue<int> queue = new Queue<int>();
         StringBuilder sb = new StringBuilder();
-        var s = "";
+        var carry = 0;
 
-        if (num1.Length <= num2.Length)
+        if (n.Length < m.Length)
         {
-            for (int i = 0; i < num2.Length - num1.Length; i++)
+            var lenghDiff = m.Length - n.Length;
+            for (int i = 0; i < lenghDiff; i++)
             {
-                s += "0";
+                n = '0' + n;
             }
-
-            num1 = s + num1;
-        }
-        else
-        {
-            for (int i = 0; i < num1.Length - num2.Length; i++)
-            {
-                s += "0";
-            }
-
-            num2 = s + num2;
         }
 
-        for (int i = num1.Length - 1; 0 <= i; i--)
+        if (n.Length > m.Length)
         {
-            var digit1 = num2[i] - '0';
-            var digit2 = num1[i] - '0';
-            var prevCarry = 0;
-
-            if (queue.Count > 0)
+            var lenghDiff = n.Length - m.Length;
+            for (int i = 0; i < lenghDiff; i++)
             {
-                prevCarry = queue.Dequeue();
+                m = '0' + m;
             }
-
-            if (10 <= digit1 + digit2 + prevCarry)
-            {
-                queue.Enqueue(1);
-            }
-
-            sb.Append((digit1 + digit2 + prevCarry) % 10);
         }
 
-        if (queue.Count > 0)
+        for (int i = n.Length - 1; 0 <= i; i--)
         {
-            sb.Append(queue.Dequeue());
+            var num1 = (n[i] - '0');
+            var num2 = (m[i] - '0');
+
+            sb.Append((num1 + num2 + carry) % 10);
+
+            if (num1 + num2 + carry > 9)
+            {
+                carry = 1;
+            }
+            else
+            {
+                carry = 0;
+            }
         }
 
-        var result = new string(sb.ToString().Reverse().ToArray());
-        Console.WriteLine(result);
+        var newResult = new string(sb.ToString().Reverse().ToArray());
+
+        if (carry == 1)
+        {
+            newResult = carry + newResult;
+        }
+
+        return newResult;
     }
 }
