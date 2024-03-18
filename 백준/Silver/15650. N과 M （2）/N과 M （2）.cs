@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 
 class Program
 {
@@ -13,7 +12,7 @@ class Program
         var num1 = Int32.Parse(input[0]);
         var num2 = Int32.Parse(input[1]);
 
-        var ints = Enumerable.Repeat(0, num1).ToArray();
+        var ints = new int[num1];
 
         Combination_DFS(sw, ints, 0, 0, num2);
 
