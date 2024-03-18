@@ -14,7 +14,6 @@ class Program
         var num2 = Int32.Parse(input[1]);
 
         var ints = Enumerable.Repeat(0, num1).ToArray();
-        var visit = Enumerable.Repeat(false, num1).ToArray();
 
         Combination_DFS(sw, ints, 0, 0, num2);
 
