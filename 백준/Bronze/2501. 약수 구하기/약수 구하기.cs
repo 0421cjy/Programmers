@@ -10,15 +10,15 @@ class Program
         var num1 = Int32.Parse(input[0]);
         var num2 = Int32.Parse(input[1]);
 
-        var temp = divisor(num1).Take(num2);
+        var result = divisor(num1).Where((x, idx) => idx == num2 - 1);
 
-        if (temp.Count() < num2) 
+        if (result.Count() == 0) 
         {
             Console.WriteLine("0");
         }
         else
         {
-            Console.WriteLine(temp.Last());
+            Console.WriteLine(result.First());
         }
     }
 
