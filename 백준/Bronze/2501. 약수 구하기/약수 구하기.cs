@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 class Program
 {
@@ -10,26 +8,26 @@ class Program
         var num1 = Int32.Parse(input[0]);
         var num2 = Int32.Parse(input[1]);
 
-        var result = divisor(num1).Where((x, idx) => idx == num2 - 1);
-
-        if (result.Count() == 0) 
-        {
-            Console.WriteLine("0");
-        }
-        else
-        {
-            Console.WriteLine(result.First());
-        }
+        Console.WriteLine(divisor(num1, num2));
     }
 
-    static IEnumerable<int> divisor(int n)
+    static int divisor(int n, int idx)
     {
+        int index = 0;
+
         for (int i = 1; i <= n; i++)
         {
             if (n % i == 0)
             {
-                yield return i;
+                index++;
+                
+                if (index == idx)
+                {
+                    return i;
+                }
             }
         }
+
+        return 0;
     }
 }
