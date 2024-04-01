@@ -18,24 +18,38 @@ public partial class Program
             var number = Int32.Parse(input);
 
             if (number == 0) break;
-
-            int a = 0;
-            int b = 0;
-
-            for (int i = 0; i <= number / 2; i++)
+            
+            var results = GetGoldbachConjecture(isPrime, primeArray, number);
+            if (results == (0, 0))
             {
-                a = primeArray[i];
-                b = number - a;
-
-                if (isPrime[a] && isPrime[b])
-                {
-                    sb.AppendLine($"{number} = {a} + {b}");
-                    break;
-                }
+                sb.AppendLine("Goldbach's conjecture is wrong.");
+            }
+            else
+            {
+                sb.AppendLine($"{number} = {results.Item1} + {results.Item2}");
             }
         }
 
         Console.WriteLine(sb.ToString());
+    }
+
+    public static (int, int) GetGoldbachConjecture(bool[] bools, int[] ints, int n)
+    {
+        int a = 0;
+        int b = 0;
+
+        for (int i = 0; i <= n / 2; i++)
+        {
+            a = ints[i];
+            b = n - a;
+
+            if (bools[a] && bools[b])
+            {
+                return (a, b);
+            }
+        }
+
+        return (0, 0);
     }
 
     public static void GetPrimeNumberList(bool[] bools, int[] ints, int n)
