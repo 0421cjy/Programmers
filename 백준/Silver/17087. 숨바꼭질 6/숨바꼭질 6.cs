@@ -7,18 +7,16 @@ public partial class Program
     static void Main(string[] args)
     {
         var input = Console.ReadLine().Split();
-        var count = Int32.Parse(input[0]);
         var num = Int32.Parse(input[1]);
 
         var list = new List<int>();
 
         var nums = Console.ReadLine().Split();
-        foreach (var i in nums ) 
+        foreach (var i in nums) 
         {
-            list.Add(Int32.Parse(i));
+            var n = Int32.Parse(i);
+            list.Add(Math.Abs(n - num));
         }
-
-        list = list.Select(x => Math.Abs(x - num)).ToList();
 
         Console.WriteLine(list.Aggregate(gcd));
     }
