@@ -18,9 +18,7 @@ public partial class Program
         while (q.Count > 1)
         {
             q.Dequeue();
-            var value = q.Dequeue();
-
-            q.Enqueue(value);
+            q.Enqueue(q.Dequeue());
         }
 
         Console.WriteLine(q.Dequeue());
